@@ -1,0 +1,182 @@
+/* 星期导航栏样式 */
+.weekday-nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.weekday-nav li {
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  font-weight: 500;
+}
+
+.weekday-nav li:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: none;
+  box-shadow: none;
+}
+
+.weekday-nav li.active {
+  background: rgba(255, 255, 255, 0.2);
+  color: #02f7ee;
+  font-weight: 600;
+}
+
+/* 动画列表样式 */
+.calendar-container ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  list-style: none;
+}
+
+/* 响应式断点 */
+@media (max-width: 480px) {
+  .calendar-container ul {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .weekday-nav ul {
+    padding: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .weekday-nav li {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .calendar-container ul {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .weekday-nav li {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .calendar-container ul {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .calendar-container ul {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .weekday-nav li {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* 动画卡片样式 */
+.calendar-container li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 8px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.calendar-container li:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.image-container {
+  width: 100%;
+  aspect-ratio: 3/4; /* 保持图片比例 */
+  overflow: hidden;
+  border-radius: 6px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.image-container img:hover {
+  transform: scale(1.05);
+}
+
+/* 动画信息样式 */
+.anime-info {
+  width: 100%;
+  text-align: center;
+}
+
+.anime-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+  line-height: 1.3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.anime-score {
+  font-size: 0.9em;
+  color: #ffd700;
+  font-weight: 600;
+}
+
+/* 移动端优化 */
+@media (max-width: 480px) {
+  .image-container {
+    margin-bottom: 6px;
+    border-radius: 4px;
+  }
+  
+  .calendar-container li {
+    padding: 6px;
+    font-size: 12px;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  .calendar-container li {
+    padding: 7px;
+    font-size: 13px;
+  }
+}
+
+@media (min-width: 1025px) {
+  .calendar-container li {
+    padding: 10px;
+    font-size: 14px;
+  }
+}

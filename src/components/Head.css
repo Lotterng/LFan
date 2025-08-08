@@ -1,0 +1,47 @@
+.head{
+    width: 100%;
+    background: #555777;
+    color: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 16px;
+    box-sizing: border-box;
+}
+
+/* 左侧标签行内排列与间距 */
+.head-left .tag ul{
+    display: flex;
+    gap: 12px;
+    padding: 0;
+    list-style: none;
+}
+
+.head-left .tag li{
+    /* 覆盖旧样式 */
+    display: inline-flex;
+    padding: 0;
+}
+
+/* 右侧搜索与登录注册同一行 */
+.head-right{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.search input{
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+}
+
+.sign button{
+    height: 32px;
+    padding: 0 12px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
