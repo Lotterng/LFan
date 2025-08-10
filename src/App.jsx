@@ -4,6 +4,7 @@ import './App.css'
 import Home from'./pages/Home.jsx'
 import Head from './components/Head.jsx'
 import Subject from './pages/subjects/Subject.jsx'
+import Rank from './pages/Rank.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/subject/:id" element={<Subject/>} />
+        <Route path="/rank" element={<Rank/>} />
       </Routes>
     </BrowserRouter>
   )
