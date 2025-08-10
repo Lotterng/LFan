@@ -1,5 +1,6 @@
 import { BASE_URL, calendar } from "../services/Bangumi/api"; 
 import { useState, useEffect} from 'react'
+import { Link } from 'react-router-dom'
 import './Home.css'
 
 export default function Home(){
@@ -30,8 +31,7 @@ export default function Home(){
 
     return(
         <div>
-            <h1>Home</h1>
-            <h2>Calendar</h2>
+            <h1>每日放送</h1>
             <div className="calendar-container">
                 <div className="weekday-nav">
                     <ul>
@@ -49,9 +49,11 @@ export default function Home(){
                 <ul>
                     {calendarData?.[weekAct]?.items?.map((item, index) => (
                         <li key={index}>
-                            <div className="image-container">
-                                <img src={item?.images?.common} alt={item?.name_cn || item?.name}/>
-                            </div>
+                            <Link to={`/subject/${item.id}`}>
+                                <div className="image-container">
+                                    <img src={item?.images?.large} alt={item?.name_cn || item?.name}/>
+                                </div>
+                            </Link>
                             <div className="anime-info">
                                 <div className="anime-name">
                                     {item?.name_cn !== "" ? item?.name_cn : item?.name}
