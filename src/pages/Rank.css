@@ -1,0 +1,290 @@
+.rank-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.rank-container h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: 600;
+}
+
+.rank-nav {
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 120px;
+    gap: 20px;
+    padding: 15px 20px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.nav-item {
+    text-align: center;
+}
+
+.rank-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rank-item {
+    display: grid;
+    grid-template-columns: 80px 120px 1fr 120px;
+    gap: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    align-items: center;
+}
+
+.rank-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.rank-number {
+    text-align: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.rank-number:first-child {
+    color: #ffd700; /* 金色第一名 */
+}
+
+.rank-number:nth-child(2) {
+    color: #c0c0c0; /* 银色第二名 */
+}
+
+.rank-number:nth-child(3) {
+    color: #cd7f32; /* 铜色第三名 */
+}
+
+.rank-cover {
+    text-align: center;
+}
+
+.rank-cover img {
+    width: 80px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.rank-info {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rank-name {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.rank-name-original {
+    font-size: 14px;
+    color: var(--text-color);
+    font-style: italic;
+}
+
+.rank-score {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.score-main {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff6b6b;
+}
+
+.score-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    color: var(--text-color);
+}
+
+.score-rank {
+    color: var(--text-color);
+}
+
+.score-total {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.rank-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 4px;
+}
+
+.rank-tag-item {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    border-radius: 12px;
+    padding-right: 8px;
+    font-size: 11px;
+    white-space: nowrap;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.rank-tag-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.rank-date {
+    font-size: 14px;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-top: 4px;
+}
+
+.loading, .error, .no-data {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 18px;
+    color: var(--text-color);
+}
+
+.error {
+    color: #ff6b6b;
+}
+
+.no-data {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .rank-container {
+        padding: 15px;
+    }
+    
+    .rank-container h1 {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    
+    .rank-nav {
+        grid-template-columns: 60px 80px 1fr 100px;
+        gap: 15px;
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    .rank-item {
+        grid-template-columns: 60px 80px 1fr 100px;
+        gap: 15px;
+        padding: 15px;
+        margin-bottom: 10px;
+    }
+    
+    .rank-number {
+        font-size: 20px;
+    }
+    
+    .rank-cover img {
+        width: 60px;
+        height: 90px;
+    }
+    
+    .rank-name {
+        font-size: 16px;
+    }
+    
+    .rank-name-original {
+        font-size: 13px;
+    }
+    
+    .score-main {
+        font-size: 18px;
+    }
+    
+    .score-details {
+        font-size: 11px;
+    }
+    
+    .rank-tags {
+        margin-top: 3px;
+    }
+    
+    .rank-tag-item {
+        font-size: 10px;
+        padding: 2px 6px;
+    }
+    
+    .rank-date {
+        font-size: 13px;
+        margin-top: 3px;
+    }
+}
+
+@media (max-width: 480px) {
+    .rank-nav {
+        grid-template-columns: 50px 70px 1fr 80px;
+        gap: 10px;
+        padding: 10px;
+        font-size: 12px;
+    }
+    
+    .rank-item {
+        grid-template-columns: 50px 70px 1fr 80px;
+        gap: 10px;
+        padding: 12px;
+    }
+    
+    .rank-number {
+        font-size: 18px;
+    }
+    
+    .rank-cover img {
+        width: 50px;
+        height: 75px;
+    }
+    
+    .rank-name {
+        font-size: 14px;
+    }
+    
+    .score-main {
+        font-size: 16px;
+    }
+    
+    .score-details {
+        font-size: 10px;
+    }
+    
+    .rank-tags {
+        margin-top: 2px;
+    }
+    
+    .rank-tag-item {
+        font-size: 9px;
+        padding: 2px 5px;
+    }
+    
+    .rank-date {
+        font-size: 12px;
+        margin-top: 2px;
+    }
+} 
