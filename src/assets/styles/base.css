@@ -3,23 +3,186 @@
   line-height: 1.5;
   font-weight: 400;
 
+  /* 主题色定义 */
+  --theme-color: #555777;
+  --theme-color-light: #6a6b8a;
+  --theme-color-dark: #444666;
+  
+  /* 智能字体颜色系统 */
+  --text-on-theme: #ffffff;        /* 主题色背景上的白色文字 */
+  --text-on-light: #555777;        /* 浅色背景上的主题色文字 */
+  
+  /* 背景色定义 */
+  --background-light: #ffffff;     /* 默认白色背景 */
+  --background-theme: #555777;     /* 主题色背景 */
+  --page-background: #1a1a2e;     /* 深色页面背景 */
+  --card-background: rgba(255, 255, 255, 0.05); /* 卡片背景 */
+
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
+  color: var(--text-on-light);     /* 默认使用主题色文字 */
+  background-color: var(--background-light); /* 默认使用白色背景 */
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-ul{
+
+/* 全局重置样式 */
+body {
+  background-color: var(--background-light);
+  color: var(--text-on-light);
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--background-light);
+}
+
+ul {
   list-style: none;
   margin: 0px;
 }
 
+/* 通用按钮样式 */
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: var(--theme-color);
+  color: var(--text-on-theme);
+}
 
-@media (prefers-color-scheme: light) {
+button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  background-color: var(--theme-color-light);
+}
+
+/* 通用输入框样式 */
+input {
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  background-color: var(--background-light);
+  color: var(--text-on-light);
+  border: 1px solid var(--theme-color);
+}
+
+input:focus {
+  box-shadow: 0 0 0 2px rgba(85, 87, 119, 0.3);
+  border-color: var(--theme-color-light);
+}
+
+input::placeholder {
+  color: var(--theme-color-light);
+}
+
+/* 通用链接样式 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+/* 通用flex布局工具类 */
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+/* 通用间距工具类 */
+.gap-sm { gap: 8px; }
+.gap-md { gap: 12px; }
+.gap-lg { gap: 16px; }
+.gap-xl { gap: 20px; }
+
+/* 通用圆角工具类 */
+.rounded-sm { border-radius: 4px; }
+.rounded-md { border-radius: 6px; }
+.rounded-lg { border-radius: 8px; }
+.rounded-xl { border-radius: 12px; }
+
+/* 主题色背景上的文字 */
+.bg-theme {
+  background-color: var(--background-theme);
+  color: var(--text-on-theme);
+}
+
+/* 浅色背景上的文字 */
+.bg-light {
+  background-color: var(--background-light);
+  color: var(--text-on-light);
+}
+
+/* 页面背景 */
+.bg-page {
+  background-color: var(--page-background);
+  color: var(--text-on-theme);
+}
+
+/* 卡片背景 */
+.bg-card {
+  background-color: var(--card-background);
+  color: var(--text-on-theme);
+}
+
+/* 智能文字颜色类 - 根据背景自动调整 */
+.text-auto {
+  color: var(--text-on-light); /* 默认主题色文字 */
+}
+
+.bg-theme .text-auto,
+.bg-theme .text-auto * {
+  color: var(--text-on-theme) !important; /* 主题色背景上强制使用白色文字 */
+}
+
+.bg-light .text-auto,
+.bg-light .text-auto * {
+  color: var(--text-on-light) !important; /* 浅色背景上强制使用主题色文字 */
+}
+
+/* 响应式深色模式 */
+@media (prefers-color-scheme: dark) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    color: var(--text-on-theme);
+    background-color: var(--page-background);
+  }
+  
+  body {
+    background-color: var(--page-background);
+    color: var(--text-on-theme);
+  }
+  
+  html {
+    background-color: var(--page-background);
+  }
+  
+  /* 深色模式下，浅色背景类仍然保持白色背景和主题色文字 */
+  .bg-light {
+    background-color: var(--background-light);
+    color: var(--text-on-light);
   }
 }

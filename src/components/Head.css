@@ -1,7 +1,7 @@
-.head{
+.head {
     width: 100%;
-    background: #555777;
-    color: #FFF;
+    background: var(--background-theme);
+    color: var(--text-on-theme);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -9,39 +9,166 @@
     box-sizing: border-box;
 }
 
-/* 左侧标签行内排列与间距 */
-.head-left .tag ul{
+/* Logo样式 */
+.logo {
+    cursor: pointer;
+    margin-right: 20px;
+    transition: all 0.2s ease;
+}
+
+.logo:hover {
+    transform: scale(1.05);
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-on-theme);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+/* 左侧标签样式 */
+.head-left .tag ul {
     display: flex;
     gap: 12px;
     padding: 0;
-    list-style: none;
 }
 
-.head-left .tag li{
-    /* 覆盖旧样式 */
+.head-left .tag li {
     display: inline-flex;
     padding: 0;
+    color: var(--text-on-theme);
 }
 
-/* 右侧搜索与登录注册同一行 */
-.head-right{
+/* 右侧搜索与登录注册样式 */
+.head-right {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.search input{
+.search input {
     height: 32px;
     padding: 0 12px;
-    border-radius: 6px;
-    border: none;
-    outline: none;
 }
 
-.sign button{
+.sign button {
     height: 32px;
     padding: 0 12px;
-    border-radius: 6px;
-    border: none;
-    cursor: pointer;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .head {
+        flex-direction: column;
+        gap: 15px;
+        padding: 15px 12px;
+    }
+    
+    .head-left {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .logo {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    
+    .head-left .tag ul {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .head-right {
+        flex-direction: column;
+        gap: 12px;
+        width: 100%;
+    }
+    
+    .search input {
+        width: 100%;
+        max-width: 300px;
+        height: 36px;
+    }
+    
+    .sign {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+    
+    .sign button {
+        height: 36px;
+        padding: 0 16px;
+        font-size: 14px;
+    }
+}
+
+/* 小屏幕手机适配 */
+@media (max-width: 480px) {
+    .head {
+        padding: 12px 8px;
+        gap: 12px;
+    }
+    
+    .logo-text {
+        font-size: 20px;
+    }
+    
+    .head-left .tag ul {
+        gap: 6px;
+    }
+    
+    .head-left .tag li {
+        font-size: 14px;
+        padding: 4px 8px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+    }
+    
+    .head-right {
+        gap: 10px;
+    }
+    
+    .search input {
+        height: 40px;
+        font-size: 16px; /* 防止iOS缩放 */
+    }
+    
+    .sign button {
+        height: 40px;
+        padding: 0 20px;
+        font-size: 16px;
+    }
+}
+
+/* 超小屏幕适配 */
+@media (max-width: 360px) {
+    .logo-text {
+        font-size: 18px;
+    }
+    
+    .head-left .tag ul {
+        gap: 4px;
+    }
+    
+    .head-left .tag li {
+        font-size: 13px;
+        padding: 3px 6px;
+    }
+    
+    .sign {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .sign button {
+        width: 100%;
+        max-width: 200px;
+    }
 }
