@@ -10,4 +10,5 @@ const rank ='v0/subjects?type={type}&sort=rank&limit={limit}&offset={offset}'
 
 const episodes = 'v0/episodes?subject_id={subject_id}&limit={limit}&offset={offset}'
 
+const episodesInfo = 'v0/episodes/{subject_id}'
 export { BASE_URL, calendar, subjects, characters, rank, episodes }
