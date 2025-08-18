@@ -1,4 +1,4 @@
-import { BASE_URL, subjects } from "../../services/Bangumi/api";
+import { BASE_URL, subjects, episodes } from "../../services/Bangumi/api";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Subject.css";
@@ -7,6 +7,8 @@ import Character from "./Character.jsx";
 
 export default function Subject(){
     const [subject, setSubject] = useState(null);
+    const [episodesAired, setEpisodesAired] = useState(null);
+    const [episodesTotal, setEpisodesTotal] = useState(null);
     const { id } = useParams();
 
     useEffect(() => {
@@ -15,6 +17,33 @@ export default function Subject(){
             .then(data => setSubject(data))
             .catch(err => console.log(err));
     }, [id]);
+
+    useEffect(() => {
+        if (!id) return;
+        setEpisodesAired(null);
+        setEpisodesTotal(null);
+        const url = `${BASE_URL}${episodes
+            .replace('{subject_id}', id)
+            .replace('{limit}', '100')
+            .replace('{offset}', '0')}`;
+        fetch(url)
+            .then(res => res.json())
+            .then(data => {
+                const now = new Date();
+                const aired = Array.isArray(data?.data)
+                    ? data.data.filter(ep => {
+                        if (!ep?.airdate) return false;
+                        const d = new Date(ep.airdate);
+                        return !isNaN(d) && d <= now;
+                    }).length
+                    : 0;
+                const totalFromApi = Number.isFinite(data?.total) ? data.total : undefined;
+                const total = totalFromApi ?? subject?.total_episodes ?? subject?.eps ?? undefined;
+                setEpisodesAired(aired);
+                if (total !== undefined) setEpisodesTotal(total);
+            })
+            .catch(err => console.log(err));
+    }, [id, subject?.total_episodes, subject?.eps]);
     
     return(
         <div>
@@ -74,6 +103,33 @@ export default function Subject(){
                             </div>
                         </div>
                         <div className="subject-info-right">
+                            <div className="episodes-container">
+                                <div className="episodes-title">进度</div>
+                                <div className="episodes-count-row">
+                                    <span className="episodes-count">{episodesAired ?? '-'}</span>
+                                    <span className="episodes-sep">/</span>
+                                    <span className="episodes-total">{episodesTotal ?? (subject.total_episodes || subject.eps || '-')}</span>
+                                </div>
+                                {(episodesTotal ?? subject.total_episodes ?? subject.eps) ? (
+                                    <div className="episodes-list">
+                                        {Array.from({ length: Number(episodesTotal ?? subject.total_episodes ?? subject.eps) || 0 }, (_, idx) => {
+                                            const num = idx + 1;
+                                            const airedNum = episodesAired ?? 0;
+                                            const isAired = num <= airedNum;
+                                            return (
+                                                <button
+                                                    key={num}
+                                                    type="button"
+                                                    className={`episode-btn ${isAired ? 'aired' : 'upcoming'}`}
+                                                    aria-label={`第${num}集${isAired ? '（已播出）' : '（未播出）'}`}
+                                                >
+                                                    {num}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                ) : null}
+                            </div>
                             <div className="summary-rating-row">
                                 <div className="subject-info-summary">
                                     <div className="summary-title">简介</div>
