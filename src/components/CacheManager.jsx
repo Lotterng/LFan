@@ -10,6 +10,13 @@ export default function CacheManager() {
         updateCacheStats();
     }, []);
 
+    // 面板打开时刷新统计信息，避免初次挂载时为0的情况
+    useEffect(() => {
+        if (isVisible) {
+            updateCacheStats();
+        }
+    }, [isVisible]);
+
     const updateCacheStats = () => {
         const stats = bangumiApiService.getCacheStats();
         setCacheStats(stats);
@@ -51,7 +58,7 @@ export default function CacheManager() {
         return (
             <button 
                 className="cache-manager-toggle"
-                onClick={() => setIsVisible(true)}
+                onClick={() => { setIsVisible(true); updateCacheStats(); }}
                 title="缓存管理"
             >
                 🗄️
