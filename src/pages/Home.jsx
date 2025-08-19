@@ -1,4 +1,4 @@
-import { BASE_URL, calendar } from "../services/Bangumi/api"; 
+import bangumiApiService from "../services/Bangumi/apiService";
 import { useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import './Home.css'
@@ -14,9 +14,8 @@ export default function Home(){
     ];
     
     useEffect(() => {
-        // 使用fetch进行GET请求
-        fetch(`${BASE_URL}${calendar}`)
-            .then(res => res.json()) // 解析JSON响应
+        // 使用缓存API服务
+        bangumiApiService.getCalendar()
             .then(data => {
                 console.log(data);
                 setCalendarData(data);

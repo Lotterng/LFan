@@ -1,4 +1,4 @@
-import { BASE_URL, subjects, episodes } from "../../services/Bangumi/api";
+import bangumiApiService from "../../services/Bangumi/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Subject.css";
@@ -12,8 +12,7 @@ export default function Subject(){
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`${BASE_URL}${subjects.replace('{subject_id}', id)}`)
-            .then(res => res.json())
+        bangumiApiService.getSubject(id)
             .then(data => setSubject(data))
             .catch(err => console.log(err));
     }, [id]);
@@ -22,12 +21,8 @@ export default function Subject(){
         if (!id) return;
         setEpisodesAired(null);
         setEpisodesTotal(null);
-        const url = `${BASE_URL}${episodes
-            .replace('{subject_id}', id)
-            .replace('{limit}', '100')
-            .replace('{offset}', '0')}`;
-        fetch(url)
-            .then(res => res.json())
+        
+        bangumiApiService.getEpisodes(id, '100', '0')
             .then(data => {
                 const now = new Date();
                 const aired = Array.isArray(data?.data)
@@ -35,7 +30,7 @@ export default function Subject(){
                         if (!ep?.airdate) return false;
                         const d = new Date(ep.airdate);
                         return !isNaN(d) && d <= now;
-                    }).length
+                        }).length
                     : 0;
                 const totalFromApi = Number.isFinite(data?.total) ? data.total : undefined;
                 const total = totalFromApi ?? subject?.total_episodes ?? subject?.eps ?? undefined;

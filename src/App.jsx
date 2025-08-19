@@ -5,6 +5,7 @@ import Home from'./pages/Home.jsx'
 import Head from './components/Head.jsx'
 import Subject from './pages/subjects/Subject.jsx'
 import Rank from './pages/Rank.jsx'
+import CacheManager from './components/CacheManager.jsx'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,7 @@ function App() {
         <Route path="/subject/:id" element={<Subject/>} />
         <Route path="/rank" element={<Rank/>} />
       </Routes>
+      <CacheManager />
     </BrowserRouter>
   )
 }

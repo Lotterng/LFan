@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
-import { BASE_URL, rank } from "../services/Bangumi/api";
+import bangumiApiService from "../services/Bangumi/apiService";
 import "./Rank.css";
 
 export default function Rank() {
@@ -51,13 +51,7 @@ export default function Rank() {
         setLoading(true);
         setError(null);
         
-        fetch(`${BASE_URL}${rank.replace("{type}", type).replace("{limit}", limit).replace("{offset}", offset)}`)
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
+        bangumiApiService.getRank(type, limit, offset)
             .then(data => {
                 if (data && data.data) {
                     setRankList(data.data);

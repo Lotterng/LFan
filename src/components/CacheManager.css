@@ -1,0 +1,231 @@
+/* 缓存管理组件样式 */
+.cache-manager-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--background-theme);
+    color: var(--text-on-theme);
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.cache-manager-toggle:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cache-manager-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+    padding: 20px;
+}
+
+.cache-manager-modal {
+    background: var(--background-light);
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.cache-manager-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.cache-manager-header h3 {
+    margin: 0;
+    color: var(--text-on-light);
+    font-size: 1.4em;
+}
+
+.cache-manager-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: var(--text-on-light);
+    cursor: pointer;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.cache-manager-close:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.cache-manager-content {
+    padding: 24px;
+}
+
+.cache-stats {
+    margin-bottom: 24px;
+}
+
+.cache-stats h4 {
+    margin: 0 0 16px 0;
+    color: var(--text-on-light);
+    font-size: 1.2em;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 16px;
+}
+
+.stat-item {
+    background: var(--card-background);
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.9em;
+    color: var(--text-on-light);
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.stat-value {
+    display: block;
+    font-size: 1.4em;
+    font-weight: 600;
+    color: var(--text-on-light);
+}
+
+.cache-actions h4 {
+    margin: 0 0 16px 0;
+    color: var(--text-on-light);
+    font-size: 1.2em;
+}
+
+.action-section {
+    margin-bottom: 24px;
+}
+
+.action-section h5 {
+    margin: 0 0 12px 0;
+    color: var(--text-on-light);
+    font-size: 1em;
+    opacity: 0.8;
+}
+
+.action-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.action-btn {
+    padding: 8px 16px;
+    border: 1px solid var(--theme-color);
+    border-radius: 6px;
+    background: var(--background-light);
+    color: var(--text-on-light);
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.action-btn:hover {
+    background: var(--background-theme);
+    color: var(--text-on-theme);
+}
+
+.action-btn.clear-btn {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+.action-btn.clear-btn:hover {
+    background: #ff6b6b;
+    color: white;
+}
+
+.action-btn.refresh-btn {
+    border-color: #4ecdc4;
+    color: #4ecdc4;
+}
+
+.action-btn.refresh-btn:hover {
+    background: #4ecdc4;
+    color: white;
+}
+
+.action-btn.danger-btn {
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+.action-btn.danger-btn:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .cache-manager-modal {
+        margin: 10px;
+        max-height: 90vh;
+    }
+    
+    .cache-manager-content {
+        padding: 16px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .action-btn {
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,4 +1,4 @@
-import { BASE_URL, characters } from "../../services/Bangumi/api";
+import bangumiApiService from "../../services/Bangumi/apiService";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./Character.css";
@@ -10,8 +10,7 @@ export default function Character(){
 
     useEffect(() => {
         setLoading(true);
-        fetch(`${BASE_URL}${characters.replace('{subject_id}', id)}`)
-            .then(res => res.json())
+        bangumiApiService.getCharacters(id)
             .then(data => {
                 console.log(data);
                 setCharacterList(data);
